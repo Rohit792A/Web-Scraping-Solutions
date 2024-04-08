@@ -122,11 +122,12 @@
             <span class="logo">SCRAPER</span>
             <div data-thq="thq-navbar-nav" class="home-desktop-menu">
               <nav class="home-links">
-                <span class="bodySmall">Home</span>
-                <span class="home-nav22 bodySmall">Services</span>
-                <span class="home-nav32 bodySmall">How it Works</span>
-                <span class="home-nav42 bodySmall">Use Cases</span>
-                <span class="home-nav52 bodySmall">Contact</span>
+                <!-- <span class="bodySmall">Home</span> -->
+                <a href="services.html" class="home-nav22 bodySmall">Services</a>
+<a href="howitworks.html" class="home-nav32 bodySmall">How it Works</a>
+<a href="usecases.html" class="home-nav42 bodySmall">Use Cases</a>
+
+                <!-- <span class="home-nav52 bodySmall">Contact</span> -->
               </nav>
               <div class="home-buttons">
                 <button class="home-login buttonFlat">Login</button>
@@ -228,9 +229,22 @@
                 </span>
               </span>
               <div class="home-btn-group">
-                <button class="buttonFilled">Get Started Now</button>
-                <button class="buttonFlat">Learn More&nbsp;→</button>
-              </div>
+                <button id="getStartedBtn" class="buttonFilled">Get Started Now</button>
+                <button id="learnMoreBtn" class="buttonFlat">Learn More&nbsp;→</button>
+            </div>
+        
+            <script>
+                // Function to handle click event for the "Get Started Now" button
+                document.getElementById("getStartedBtn").addEventListener("click", function () {
+                    window.location.href = "getstarted.html"; // Redirect to getstarted.html
+                });
+        
+                // Function to handle click event for the "Learn More" button
+                document.getElementById("learnMoreBtn").addEventListener("click", function () {
+                    window.location.href = "learnmore.html"; // Redirect to learnmore.html
+                });
+            </script>
+            
             </div>
           </div>
         </div>
@@ -465,7 +479,7 @@
         </div>
         <div class="home-footer">
           <footer class="footerContainer home-footer1">
-            <div class="home-container31">
+            <!-- <div class="home-container31">
               <span class="logo">SCRAPER</span>
               <nav class="home-nav1">
                 <span class="bodySmall">Home</span>
@@ -474,7 +488,7 @@
                 <span class="home-nav422 bodySmall">Use Cases</span>
                 <span class="home-nav522 bodySmall">Contact</span>
               </nav>
-            </div>
+            </div> -->
             <div class="home-separator"></div>
             <div class="home-container32">
               <span class="bodySmall home-text89">

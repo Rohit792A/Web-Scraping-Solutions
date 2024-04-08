@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Web Scraping Service</title>
+    <style>
+        html, body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #8A2BE2, #FF1493, #FF6347);
+            height: 100%; /* Ensure gradient fills the entire viewport */
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .container p {
+            line-height: 1.6;
+        }
+        .form-container {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .form-container input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .form-container input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AI Web Scraping Service</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+    <div class="container">
+        <div class="form-container">
+            <form id="scrapingForm">
+                <label for="url">Enter URL to Scrape:</label>
+                <input type="text" id="url" name="url" required>
+                <input type="submit" value="Scrape Data">
+            </form>
+        </div>
+        <div id="scrapedData" class="container"></div>
+    </div>
+    <script>
+        document.getElementById('scrapingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var url = document.getElementById('url').value;
+            // You can add AJAX call here to send the URL to your backend for scraping
+            // For demonstration purpose, let's just display a message with the scraped data
+            var scrapedData = "Scraped data will be displayed here for URL: " + url;
+            document.getElementById('scrapedData').innerHTML = scrapedData;
+        });
+    </script>
+</body>
+</html>
