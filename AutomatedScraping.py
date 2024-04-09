@@ -2,6 +2,8 @@ import asyncio
 import pprint
 import pandas as pd
 
+from autoscraper import AutoScraper
+
 from bs4 import BeautifulSoup
 
 import nest_asyncio
@@ -180,43 +182,44 @@ async def scrape_with_playwright(url: str, tags, **kwargs):
 
 #added code for multiple URL
 #to fetch all the different urls from the web page
-from autoscraper import AutoScraper
+
 UrlToScrap="https://www.cartrade.com/new-car-launches/"
-WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
+# WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
 
-InfoScraper = AutoScraper()
-x = InfoScraper.build(UrlToScrap, wanted_list=WantedList)
+def main():
+    InfoScraper = AutoScraper()
+    x = InfoScraper.build(UrlToScrap, wanted_list=WantedList)
 
-temp = []
-for i in x :
-  UrlToScrap= i
-  WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
+    temp = []
+    for i in x :
+      UrlToScrap= i
+      WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
 
-  InfoScraper = AutoScraper()
-  k = InfoScraper.build(UrlToScrap, wanted_list=WantedList)
-  temp.extend(k)
+      InfoScraper = AutoScraper()
+      k = InfoScraper.build(UrlToScrap, wanted_list=WantedList)
+      temp.extend(k)
 
-temp2  = {}
-temp2 = list(set(temp))
-
-
-
-main = []
-for url in temp2:
-  a = asyncio.run(scrape_with_playwright(
-        url=wsj_url,
-        tags=["td","tr","th","h2"],
-        # schema_pydantic=SchemaNewsWebsites,
-        schema=car_schema,
-    ))
-  main.append(ascrape_playwright)
+    temp2  = {}
+    temp2 = list(set(temp))
 
 
 
+    result = []
+    for url in temp2:
+      a = asyncio.run(scrape_with_playwright(
+            url=wsj_url,
+            tags=["td","tr","th","h2"],
+            # schema_pydantic=SchemaNewsWebsites,
+            schema=car_schema,
+        ))
+      result.append(ascrape_playwright)
 
-for i in range(1,len(temp)):
-  # Initialise data to lists
-  # temp[0] = temp[0] + temp[i]
+    for i in range(1,len(result)):
+      # Initialise data to lists
+      # temp[0] = temp[0] + temp[i]
 
-  df = pd.DataFrame.from_records(temp[i])
-  df.to_csv('/content/Cars_dataset/dataframe'+str(i)+'.csv', index=False)
+      df = pd.DataFrame.from_records(result[i])
+      df.to_csv('/content/Cars_dataset/dataframe'+str(i)+'.csv', index=False)
+
+if __name__ == "__main__":
+    main()
