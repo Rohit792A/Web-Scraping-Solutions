@@ -21,7 +21,7 @@ import os
 import langchain
 from langchain.chains import (create_extraction_chain,
                               create_extraction_chain_pydantic)
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 
 
 # -------------------------------------------------------------------------------------------
@@ -98,7 +98,7 @@ async def ascrape_playwright(url, tags: list[str] = ["h1", "h2", "h3", "span"]) 
     content from a given URL, extracting specified HTML tags and removing unwanted tags and unnecessary
     lines.
     """
-    print("Started scraping...")
+    # print("Started scraping...")
     results = ""
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -110,7 +110,7 @@ async def ascrape_playwright(url, tags: list[str] = ["h1", "h2", "h3", "span"]) 
 
             results = remove_unessesary_lines(extract_tags(remove_unwanted_tags(
                 page_source), tags))
-            print("Content scraped")
+          #  print("Content scraped")
         except Exception as e:
             results = f"Error: {e}"
         await browser.close()
@@ -168,14 +168,14 @@ token_limit = 2000
 async def scrape_with_playwright(url: str, tags, **kwargs):
         html_content = await ascrape_playwright(url, tags)
 
-        print("Extracting content with LLM")
+        # print("Extracting content with LLM")
 
         html_content_fits_context_window_llm = html_content[:token_limit]
 
         extracted_content = extract(**kwargs,
                                     content=html_content_fits_context_window_llm)
 
-        pprint.pprint(extracted_content)
+        # pprint.pprint(extracted_content)
         return extracted_content
 
 
@@ -183,10 +183,12 @@ async def scrape_with_playwright(url: str, tags, **kwargs):
 #added code for multiple URL
 #to fetch all the different urls from the web page
 
-UrlToScrap="https://www.cartrade.com/new-car-launches/"
-# WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
+
+ 
 
 def main():
+    UrlToScrap="https://www.cartrade.com/new-car-launches/"
+    WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
     InfoScraper = AutoScraper()
     x = InfoScraper.build(UrlToScrap, wanted_list=WantedList)
 
@@ -205,21 +207,22 @@ def main():
 
 
     result = []
-    for url in temp2:
+    for url1 in temp2:
       a = asyncio.run(scrape_with_playwright(
-            url=wsj_url,
+            url=url1,
             tags=["td","tr","th","h2"],
             # schema_pydantic=SchemaNewsWebsites,
             schema=car_schema,
         ))
-      result.append(ascrape_playwright)
+    #   result.append(ascrape_playwright)
+      result.append(a)
+    print(result)
+    # for i in range(1,len(result)):
+    #   # Initialise data to lists
+    #   # temp[0] = temp[0] + temp[i]
 
-    for i in range(1,len(result)):
-      # Initialise data to lists
-      # temp[0] = temp[0] + temp[i]
-
-      df = pd.DataFrame.from_records(result[i])
-      df.to_csv('/content/Cars_dataset/dataframe'+str(i)+'.csv', index=False)
+    #   df = pd.DataFrame.from_records(result[i])
+    #   df.to_csv('/content/Cars_dataset/dataframe'+str(i)+'.csv', index=False)
 
 if __name__ == "__main__":
     main()
