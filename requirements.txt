@@ -20,6 +20,7 @@ dataclasses-json==0.6.4
 distlib==0.3.6
 distro==1.9.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 docopt==0.6.2
 et-xmlfile==1.1.0
 exceptiongroup==1.2.0
@@ -33,6 +34,11 @@ gdown==4.7.1
 google-auth==2.23.0
 google-auth-oauthlib==1.0.0
 google-pasta==0.2.0
+=======
+filelock==3.13.4
+frozenlist==1.4.1
+fsspec==2024.3.1
+>>>>>>> c63cc8d72c8f94b489ed286d3fa950154d60a994
 =======
 filelock==3.13.4
 frozenlist==1.4.1
@@ -69,7 +75,11 @@ Markdown==3.4.4
 MarkupSafe==2.1.3
 marshmallow==3.21.1
 <<<<<<< HEAD
+<<<<<<< HEAD
 mtcnn==0.1.1
+=======
+mpmath==1.3.0
+>>>>>>> c63cc8d72c8f94b489ed286d3fa950154d60a994
 =======
 mpmath==1.3.0
 >>>>>>> c63cc8d72c8f94b489ed286d3fa950154d60a994
@@ -111,11 +121,17 @@ pytz==2024.1
 PyWavelets==1.4.1
 PyYAML==6.0.1
 <<<<<<< HEAD
+<<<<<<< HEAD
 regex==2023.8.8
 requests==2.31.0
 requests-oauthlib==1.3.1
 retina-face==0.0.13
 rsa==4.9
+=======
+regex==2023.12.25
+requests==2.31.0
+safetensors==0.4.2
+>>>>>>> c63cc8d72c8f94b489ed286d3fa950154d60a994
 =======
 regex==2023.12.25
 requests==2.31.0
@@ -143,10 +159,17 @@ termcolor==2.3.0
 textblob==0.17.1
 tifffile==2023.9.26
 <<<<<<< HEAD
+<<<<<<< HEAD
 tiktoken==0.6.0
 tqdm==4.66.2
 trio==0.22.0
 trio-websocket==0.9.2
+=======
+tokenizers==0.15.2
+torch==2.2.2
+tqdm==4.66.2
+transformers==4.39.3
+>>>>>>> c63cc8d72c8f94b489ed286d3fa950154d60a994
 =======
 tokenizers==0.15.2
 torch==2.2.2
