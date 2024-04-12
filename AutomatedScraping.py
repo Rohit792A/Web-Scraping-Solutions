@@ -21,11 +21,11 @@ import os
 import langchain
 from langchain.chains import (create_extraction_chain,
                               create_extraction_chain_pydantic)
-from langchain_community.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 
 
 # -------------------------------------------------------------------------------------------
-
+openai_api_key = "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"
 
 # -------------------------------------------------------------------------------------------
 
@@ -186,43 +186,60 @@ async def scrape_with_playwright(url: str, tags, **kwargs):
 
  
 
-def main():
-    UrlToScrap="https://www.cartrade.com/new-car-launches/"
+def creator(temp_url):
+
+    # UrlToScrap="https://www.cartrade.com/new-car-launches/"
+    UrlToScrap=temp_url
     WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
     InfoScraper = AutoScraper()
     x = InfoScraper.build(UrlToScrap, wanted_list=WantedList)
 
-    temp = []
-    for i in x :
-      UrlToScrap= i
-      WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
+    # temp = []
+    # for i in x :
+    #   UrlToScrap= i
+    #   WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
 
-      InfoScraper = AutoScraper()
-      k = InfoScraper.build(UrlToScrap, wanted_list=WantedList)
-      temp.extend(k)
+    #   InfoScraper = AutoScraper()
+    #   k = InfoScraper.build(UrlToScrap, wanted_list=WantedList)
+    #   temp.extend(k)
 
-    temp2  = {}
-    temp2 = list(set(temp))
+    # temp2  = {}
+    # temp2 = list(set(temp))
 
 
 
     result = []
-    for url1 in temp2:
-      a = asyncio.run(scrape_with_playwright(
+    # for url1 in temp2[:2]:
+    url1="https://www.cartrade.com/hyundai-cars/creta/"
+    a = asyncio.run(scrape_with_playwright(
             url=url1,
             tags=["td","tr","th","h2"],
             # schema_pydantic=SchemaNewsWebsites,
             schema=car_schema,
         ))
     #   result.append(ascrape_playwright)
-      result.append(a)
-    print(result)
-    # for i in range(1,len(result)):
+    result.append(a)
+    # print(result)
+    df = pd.DataFrame.from_records(result)
+    temporary = df.to_html(classes='table table-striped table-hover')
+   
+
+    # for i in range(len(result)):
     #   # Initialise data to lists
     #   # temp[0] = temp[0] + temp[i]
 
-    #   df = pd.DataFrame.from_records(result[i])
-    #   df.to_csv('/content/Cars_dataset/dataframe'+str(i)+'.csv', index=False)
+    #     df = pd.DataFrame.from_records(result[i])
+    #   df.to_csv('C:\Users\ASUS\Desktop\Projects'+str(i)+'.csv', index=False)
+    
+    return temporary,result
+      # Export DataFrames to Excel using ExcelWriter
+def Create_excel(result):
+    with pd.ExcelWriter('output.xlsx') as excel_writer:
+        # df = pd.DataFrame.from_records(result)
+        # df.to_excel(excel_writer, sheet_name='Sheet1', index=False)
+        for i in range(len(result)):
+            df = pd.DataFrame.from_records(result[i])
+            df.to_excel(excel_writer, sheet_name='Sheet'+str(i), index=False)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI Web Scraping Use Cases</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #8A2BE2, #FF1493, #FF6347);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Changed flex direction to column */
+            align-items: center;
+        }
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #0056b3;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #0056b3;
+            font-size: 2rem; /* Increased title font size */
+            font-weight: bold; /* Added font weight to the title */
+            width: 100%; /* Added width */
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Added background color to container */
+            border-radius: 10px; /* Added border radius to container */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Added box shadow to container */
+            overflow-y: auto; /* Added overflow-y for vertical scrolling */
+            flex: 1; /* Added flex for container to take remaining space */
+        }
+        .use-case {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px; /* Added margin bottom for spacing between use cases */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .use-case:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .use-case h2 {
+            font-size: 1.8rem; /* Increased font size */
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .use-case p {
+            font-size: 1.1rem; /* Increased font size */
+            color: #555;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        .image-generation {
+            background-color: #FF7F50;
+        }
+        .text-generation {
+            background-color: #20B2AA;
+        }
+        .music-generation {
+            background-color: #87CEFA;
+        }
+        .art-generation {
+            background-color: #FFD700;
+        }
+        .video-generation {
+            background-color: #FF69B4;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Generative AI Web Scraping Use Cases
+    </header>
+    <div class="container">
+        <div class="use-case image-generation">
+            <h2>Image Generation</h2>
+            <p>Scrape image data from various sources to train Generative Adversarial Networks (GANs) for creating new images.</p>
+        </div>
+        <div class="use-case text-generation">
+            <h2>Text Generation</h2>
+            <p>Extract text data from literature, articles, or social media to train models for generating new text content.</p>
+        </div>
+        <div class="use-case music-generation">
+            <h2>Music Generation</h2>
+            <p>Collect music samples and MIDI files from music databases to train models for composing new music pieces.</p>
+        </div>
+        <div class="use-case art-generation">
+            <h2>Art Generation</h2>
+            <p>Scrape art collections and galleries to train models for generating new digital artworks and paintings.</p>
+        </div>
+        <div class="use-case video-generation">
+            <h2>Video Generation</h2>
+            <p>Retrieve video clips and frames from video libraries to train models for generating new video sequences.</p>
+        </div>
+    </div>
+</body>
+</html>

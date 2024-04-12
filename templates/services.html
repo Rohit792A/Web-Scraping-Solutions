@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="scripts.js" defer></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">'
+
+    <title>AI Web Scraping Service</title>
+    <style>
+        html, body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #8A2BE2, #FF1493, #FF6347);
+            height: 100%; /* Ensure gradient fills the entire viewport */
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .container p {
+            line-height: 1.6;
+        }
+        .form-container {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .form-container input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .form-container input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>'
+
+    <title>AI Web Scraping Service</title>
+    <style>
+        html, body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #8A2BE2, #FF1493, #FF6347);
+            height: 100%; /* Ensure gradient fills the entire viewport */
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .container p {
+            line-height: 1.6;
+        }
+        .form-container {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .form-container input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .form-container input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+
+    <header>
+        <h1>AI Web Scraping Service</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+    <div class="container">
+        <div class="form-container">
+            <form id="scrapingForm" action="/forward/" method="post">
+                <label for="url">Enter URL to Scrape:</label>
+                <input type="text" id="url" name="url" required="">
+                <button type="submit" value="Scrape Data">submit</button>
+            </form>
+        </div>
+           
+    </div>
+    <!-- <!-- <div class=" container">
+        <form method="POST" action="/process">
+            <!-- solve the error with input -->
+            <!-- <input type="hidden" id="hiddenInput" name="take" style="visibility: hidden;" value="[[{'name': 'Hyundai Creta E 1.5 Petrol', 'Price': 1100000, 'Fuel Type': 'Petrol', 'Transmission': 'Manual', 'Engine Size': 1497, 'Seating Capacity': 5, 'Size': 4330, 'Fuel Tank': 50}, {'name': 'Hyundai Creta EX 1.5 Petrol', 'Price': 1221000, 'Fuel Type': 'Petrol', 'Transmission': 'Manual', 'Engine Size': 1497, 'Seating Capacity': 5, 'Size': 4330, 'Fuel Tank': 50}, {'name': 'Hyundai Creta E 1.5 Diesel', 'Price': 0, 'Fuel Type': 'Diesel', 'Transmission': 'Manual', 'Engine Size': 1493, 'Seating Capacity': 5, 'Size': 0, 'Fuel Tank': 0}]]"> -->
+            <!-- <button type="submit" value="Download">Click here to download the Excel file</button> 
+        
+    &nbsp;&nbsp;&nbsp;&nbsp;</form> -->
+        
+        
+    
+    <!-- <script>
+        // Suppose this is your variable
+        
+        var forwardMessage = document.getElementById('scrapedData').value;
+
+        // Setting the variable as the value of the input element
+        document.getElementById('hiddenInput').value = forwardMessage;
+    </script> -->
+    <!-- <script>
+        document.getElementById('scrapingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var url = document.getElementById('url').value;
+            // You can add AJAX call here to send the URL to your backend for scraping
+            
+            // For demonstration purpose, let's just display a message with the scraped data
+            var scrapedData = "Scraped data will be displayed here for URL: " + url;
+            document.getElementById('scrapedData').innerHTML = scrapedData;
+        });
+    </script> -->
+
+</body>
+</html>
