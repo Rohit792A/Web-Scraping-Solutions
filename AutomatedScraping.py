@@ -185,7 +185,7 @@ async def scrape_with_playwright(url: str, tags, **kwargs):
 
  
 
-def creator(temp_url,input_schema):
+def creator(temp_url):
 
     # UrlToScrap="https://www.cartrade.com/new-car-launches/"
     UrlToScrap=temp_url
@@ -214,7 +214,8 @@ def creator(temp_url,input_schema):
             url=url1,
             tags=["td","tr","th","h2"],
             # schema_pydantic=SchemaNewsWebsites,
-            schema=input_schema,
+            schema = car_schema
+            # schema=input_schema,
         ))
     #   result.append(ascrape_playwright)
     result.append(a)

@@ -57,33 +57,34 @@ def move_forward():
     # print(rest,df)
     #Create_excel(df)
     
-    if request.method == 'POST':
-        url = request.form.get("url")
+    # if request.method == 'POST':
+    url = request.form.get("url")
 
-        
 
-    # return "Schema saved successfully!"
-    #forward_message = "Moving Forward..."
-        rest,df = creator(url)
+
+# return "Schema saved successfully!"
+#forward_message = "Moving Forward..."
+    rest,df = creator(url)
+    Create_excel(df)
     return rest
 
-@app.route("/set-schema.html", methods=['GET', 'POST'])
-def set_schema():
-    if request.method == 'POST':
-        schema = {
-            "properties": {},
-            "required": []
-        }
+# @app.route("/set-schema.html", methods=['GET', 'POST'])
+# def set_schema():
+#     if request.method == 'POST':
+#         schema = {
+#             "properties": {},
+#             "required": []
+#         }
 
-        for key, value in request.form.items():
-            print(key, value)
-            if key.startswith("name"):
-                schema["properties"][value] = {"type": request.form.get(f"type-{key.split('-')[-1]}", "string")}
-                schema["required"].append(value)
-        with open('schema.json', 'w') as f:
-            json.dump(schema, f)
-        return "Schema saved successfully!"
-    return render_template('set-schema.html')
+#         for key, value in request.form.items():
+#             print(key, value)
+#             if key.startswith("name"):
+#                 schema["properties"][value] = {"type": request.form.get(f"type-{key.split('-')[-1]}", "string")}
+#                 schema["required"].append(value)
+#         with open('schema.json', 'w') as f:
+#             json.dump(schema, f)
+#         return "Schema saved successfully!"
+#     return render_template('set-schema.html')
 
 
 # @app.route('/process', methods=['POST'])
