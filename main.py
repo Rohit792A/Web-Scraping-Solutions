@@ -1,6 +1,7 @@
 from flask import Flask,render_template,jsonify,request
-from werkzeug.urls import url_quote
+# from werkzeug.urls import url_quote
 from AutomatedScraping import creator,Create_excel
+from Markup_LM.Markup import mode 
 import json
 # app = Flask(__name__)
 app = Flask(__name__, template_folder='templates')
@@ -50,6 +51,24 @@ def joblistings():
 def generativeai():
     return render_template('generativeai.html') 
 
+@app.route("/services_with_time.html", methods=['GET','POST'])
+def services_with_time():
+    if request.method == 'POST':
+        url = request.form.get("url")
+        count = request.form.get("count")
+        counter = int(count)
+        question1 = []
+        for i in range(1,counter):
+            ss = "question" + str(i)
+            print(ss)
+            question = request.form.get(ss)
+            question1.append(question)
+        # for question1 in zip(request.form.getlist('question')):
+            print(question1)
+            print(type(counter))
+            counter -= 1
+        df = mode(url,question1)
+    return render_template('services_with_time.html')
 
 @app.route("/forward/", methods=['POST'])
 def move_forward():

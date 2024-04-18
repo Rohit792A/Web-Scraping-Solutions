@@ -133,18 +133,18 @@
     <div class="container">
         <div class="form-container">
             <a href="set-schema.html" scrape-data>Scrape Data</a>
-            <form id="scraping-form" action="/forward/" method="post">
+            <form id="scraping-form" action="/services_with_time.html" method="POST">
                 <label for="url">Enter URL to Scrape:</label>
                 <input type="text" id="url" name="url" required="">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required=""><br>
-                <label for="type">Type:</label>
-                <input type="text" id="type" name="type" required=""><br>
-                <div id="attributes"></div>
-                <button type="button" id="add-attribute">Add Attribute</button>
+                <input type="hidden" id="count" name="count" value="0"><br>
+                <label for="name">Question:</label>
+                <!-- <label for="type">Type:</label>
+                <input type="text" id="type" name="type" required=""><br>-->
+                <div id="attributes"></div> 
+                <button type="button" id="add-attribute">Add New Question</button> 
                 <button type="submit" value="Scrape Data" onclick="">submit</button>
             </form>
-            <div style="width: 100%; height: 500px; overflow: auto;"></div>
+            <div style="width: 100%; height: 500px; overflow: auto;">{{ df }} </div>
             <table id="data-table" style="width: 100%;">
                 <thead>
                     <tr><th>Name </th><th>Price</th></tr>
@@ -193,19 +193,21 @@
             });
         });
     </script> -->
-    <!-- <script>
+    <script>
+        var counter = 1; // Initialize the counter with 1 since it's used for naming the first input field
+        
         document.getElementById('add-attribute').addEventListener('click', function() {
             var attributesDiv = document.getElementById('attributes');
+            var counter_input = document.getElementById('count');
             var attributeDiv = document.createElement('div');
-            attributeDiv.innerHTML = `
-                <label for="attribute-name">Attribute Name:</label>
-                <input type="text" id="attribute-name" name="attribute-name" required=""><br>
-                <label for="attribute-type">Attribute Type:</label>
-                <input type="text" id="attribute-type" name="attribute-type"  required=""><br>
-            `;
+            var input_ques = `<input type="text" id="attribute-name${counter}" name="question${counter}" required=""><br>`;
+            
+            counter++;
+            counter_input.value = counter;
+            attributeDiv.innerHTML = input_ques;
             attributesDiv.appendChild(attributeDiv);
         });
-    </script> -->
+    </script> 
 
 </body>
 </html>

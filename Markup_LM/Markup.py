@@ -2,12 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 import torch
 import pickle
+from collections import Counter
+import pandas as pd
 
 #to fetch all the different urls from the web page
 from autoscraper import AutoScraper
 
-model_pkl_file = "model.pkl" 
-processor_pkl_file = "processor.pkl" 
+model_pkl_file = "Markup_LM\model.pkl" 
+processor_pkl_file = "Markup_LM\processor.pkl" 
 
 # load model from pickle file
 with open(model_pkl_file, 'rb') as file:  
@@ -51,18 +53,18 @@ def tellMe(soup,question):
   return answer
 
 
-# flag = 0
-def main():
+# Ask url
+def give_answer(url,question1):
 
-  UrlToScrap="https://www.cartrade.com/new-car-launches/"
-  WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
+  UrlToScrap=url
+  WantedList= [UrlToScrap]
   InfoScraper = AutoScraper()
   x = InfoScraper.build(UrlToScrap, wanted_list=WantedList)
   
   temp = []
   for i in x :
     UrlToScrap= i
-    WantedList= ["https://www.cartrade.com/hyundai-cars/creta/"]
+    WantedList= [url]
   
     InfoScraper = AutoScraper()
     k = InfoScraper.build(UrlToScrap, wanted_list=WantedList)
@@ -84,7 +86,8 @@ def main():
         # print("yes")
     # else:
       # print("no")
-    questions = ["tell me the price of the car?"]
+    # questions = ["tell me the price of the car?"]
+    questions = question1
     for question in questions:
       answer1.append(tellMe(soup,question))
     answer.append(answer1)
@@ -92,5 +95,46 @@ def main():
   return answer
 
 
-if __name__ == "__main__":
-   main()
+def mode(url,question1):
+  answer = give_answer(url,question1)
+  mode_of_attr = []
+
+  """Return the mode of the length of the strings in a nested list."""
+  for i in range(len(answer[0])):
+    # Get the lengths of all the strings in the nested list.
+    lengths = [len(s[i]) for s in answer]
+
+    # Create a Counter object to count the occurrences of each length.
+    counts = Counter(lengths)
+
+    # Find the length with the highest count.
+    mode = counts.most_common(1)[0][0]
+
+    mode_of_attr.append(mode)
+  mode_length = mode_of_attr
+
+  for i in range(len(mode_length)):
+     if mode_length[i] < 11:
+        mode_length[i] = 13
+
+  final_answer = []
+
+  for item in answer :
+    tempo = []
+    for i in range(len(item)):
+
+      if len(item[i])>(mode_length[i]-10) and len(item[i])<(mode_length[i]+20):
+
+        tempo.append(item[i])
+    final_answer.append(tempo)
+  
+
+  with pd.ExcelWriter('output_markup.xlsx', engine='xlsxwriter') as excel_writer:
+    output_markup = pd.DataFrame.from_records(final_answer)
+    output_markup.columns = ['Car Name', 'price']
+    output_markup.to_excel(excel_writer, sheet_name='Sheet1', index=False)
+  return output_markup
+
+
+# if __name__ == "__main__":
+#    main()
